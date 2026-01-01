@@ -1,5 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
+
+const styles = `
+  .btn-primary:hover { background-color: #2563eb !important; }
+  .btn-success:hover { background-color: #16a34a !important; }
+  .btn-cyan:hover { background-color: #0284c7 !important; }
+  .btn-outline:hover { background-color: #f0f9ff !important; }
+  .btn-gray:hover { background-color: #4b5563 !important; }
+  .btn-danger:hover { background-color: #dc2626 !important; }
+  .btn-yellow:hover { background-color: #fbbf24 !important; }
+  .table-row:hover { background-color: #f9fafb !important; }
+`;
+
 export default function Home() {
   const [jobs, setJobs] = useState([]);
   const [form, setForm] = useState({
@@ -206,6 +218,7 @@ JOB DESCRIPTION:
         paddingBottom: 80,
       }}
     >
+      <style>{styles}</style>
       <h1 style={{ marginBottom: 10 }}>Job Application Tracker</h1>
       <div
         style={{
@@ -242,6 +255,9 @@ JOB DESCRIPTION:
             </div>
             <div style={{ display: "flex", gap: 8 }}>
               <button
+                className={
+                  copied === "resume-copy" ? "btn-success" : "btn-cyan"
+                }
                 onClick={() => copyWithState(resumePrompt, "resume-copy")}
                 style={{
                   flex: 1,
@@ -257,6 +273,7 @@ JOB DESCRIPTION:
                 {copied === "resume-copy" ? "✓ Copied!" : "Copy Prompt + State"}
               </button>
               <button
+                className="btn-outline"
                 onClick={() => setShowPrompt("resume")}
                 style={{
                   padding: 10,
@@ -285,6 +302,7 @@ JOB DESCRIPTION:
             </div>
             <div style={{ display: "flex", gap: 8 }}>
               <button
+                className={copied === "cover-copy" ? "btn-success" : "btn-cyan"}
                 onClick={() => copyWithState(coverLetterPrompt, "cover-copy")}
                 style={{
                   flex: 1,
@@ -300,6 +318,7 @@ JOB DESCRIPTION:
                 {copied === "cover-copy" ? "✓ Copied!" : "Copy Prompt + State"}
               </button>
               <button
+                className="btn-outline"
                 onClick={() => setShowPrompt("cover")}
                 style={{
                   padding: 10,
@@ -317,6 +336,7 @@ JOB DESCRIPTION:
           </div>
         </div>
         <button
+          className="btn-outline"
           onClick={() => setShowState(true)}
           style={{
             width: "100%",
@@ -447,6 +467,7 @@ JOB DESCRIPTION:
         }}
       />
       <button
+        className="btn-primary"
         onClick={add}
         style={{
           padding: "10px 20px",
@@ -479,7 +500,11 @@ JOB DESCRIPTION:
         </thead>
         <tbody>
           {jobs.map((j) => (
-            <tr key={j.id} style={{ borderBottom: "1px solid #e5e7eb" }}>
+            <tr
+              key={j.id}
+              className="table-row"
+              style={{ borderBottom: "1px solid #e5e7eb" }}
+            >
               <td style={{ padding: 12 }}>{j.company}</td>
               <td style={{ padding: 12 }}>{j.position}</td>
               <td style={{ padding: 12 }}>{j.date}</td>
@@ -498,6 +523,7 @@ JOB DESCRIPTION:
               </td>
               <td style={{ padding: 12 }}>
                 <button
+                  className="btn-gray"
                   onClick={() => {
                     setView(j);
                     setTab("resume");
@@ -515,6 +541,7 @@ JOB DESCRIPTION:
                   View
                 </button>
                 <button
+                  className="btn-danger"
                   onClick={() => del(j.id)}
                   style={{
                     padding: "4px 8px",
@@ -532,34 +559,45 @@ JOB DESCRIPTION:
           ))}
         </tbody>
       </table>
-      <div
+      <footer
         style={{
           marginTop: 40,
           paddingTop: 20,
           borderTop: "1px solid #e5e7eb",
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 12,
         }}
       >
-        <a
-          href="https://buymeacoffee.com/DavidZeff"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "10px 20px",
-            background: "#FFDD00",
-            color: "#000",
-            borderRadius: 8,
-            textDecoration: "none",
-            fontWeight: 600,
-            fontSize: 14,
-          }}
-        >
-          ☕ Buy me a coffee
+        className="btn-yellow" href="https://buymeacoffee.com/DavidZeff"
+        target="_blank" rel="noopener noreferrer" style=
+        {{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "10px 20px",
+          background: "#FFDD00",
+          color: "#000",
+          borderRadius: 8,
+          textDecoration: "none",
+          fontWeight: 600,
+          fontSize: 14,
+        }}
+        <a>
+          <img
+            src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
+            alt="Coffee"
+            style={{ height: 20 }}
+          />
+          Buy me a coffee
         </a>
-      </div>
+        href="https://www.david-zeff-portfolio.com/" target="_blank"
+        rel="noopener noreferrer" style=
+        {{ color: "#6b7280", textDecoration: "none", fontSize: 14 }}
+        <a>© David Zeff</a>
+      </footer>
       {showPrompt && (
         <div
           style={{
@@ -601,6 +639,9 @@ JOB DESCRIPTION:
                 {showPrompt === "resume" ? "Resume" : "Cover Letter"} Prompt
               </h2>
               <button
+                className={
+                  copied === "prompt-view" ? "btn-success" : "btn-cyan"
+                }
                 onClick={() =>
                   copy(
                     showPrompt === "resume" ? resumePrompt : coverLetterPrompt,
@@ -643,6 +684,7 @@ JOB DESCRIPTION:
               }}
             >
               <button
+                className="btn-primary"
                 onClick={() => setShowPrompt(null)}
                 style={{
                   padding: "10px 20px",
@@ -701,6 +743,7 @@ JOB DESCRIPTION:
             >
               <h2 style={{ margin: 0 }}>My State Document</h2>
               <button
+                className="btn-gray"
                 onClick={() => setEditState(!editState)}
                 style={{
                   padding: "8px 16px",
@@ -759,6 +802,7 @@ JOB DESCRIPTION:
               }}
             >
               <button
+                className="btn-primary"
                 onClick={() => {
                   setShowState(false);
                   setEditState(false);
@@ -871,6 +915,7 @@ JOB DESCRIPTION:
               }}
             >
               <button
+                className="btn-primary"
                 onClick={() => setView(null)}
                 style={{
                   padding: "10px 20px",
