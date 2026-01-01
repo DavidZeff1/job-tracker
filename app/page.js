@@ -118,7 +118,7 @@ JOB DESCRIPTION:
   const copy = (text, id) => { navigator.clipboard.writeText(text); setCopied(id); setTimeout(()=>setCopied(''), 1500) }
   const copyWithState = (prompt, id) => { const full = prompt.replace('[PASTE YOUR STATE DOCUMENT HERE]', state || '[PASTE YOUR STATE DOCUMENT HERE]'); copy(full, id) }
   return (
-    <div style={{maxWidth:1200,margin:'0 auto',padding:20}}>
+    <div style={{maxWidth:1200,margin:'0 auto',padding:20,paddingBottom:80}}>
       <h1 style={{marginBottom:10}}>Job Application Tracker</h1>
       <div style={{background:'#f0f9ff',border:'1px solid #bae6fd',borderRadius:8,padding:16,marginBottom:20}}>
         <strong style={{color:'#0369a1',display:'block',marginBottom:12}}>Workflow</strong>
@@ -178,6 +178,11 @@ JOB DESCRIPTION:
           ))}
         </tbody>
       </table>
+      <div style={{marginTop:40,paddingTop:20,borderTop:'1px solid #e5e7eb',textAlign:'center'}}>
+        <a href="https://buymeacoffee.com/DavidZeff" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex',alignItems:'center',gap:8,padding:'10px 20px',background:'#FFDD00',color:'#000',borderRadius:8,textDecoration:'none',fontWeight:600,fontSize:14}}>
+          ☕ Buy me a coffee
+        </a>
+      </div>
       {showPrompt && (
         <div style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.5)',display:'flex',alignItems:'center',justifyContent:'center',padding:20}} onClick={()=>setShowPrompt(null)}>
           <div style={{background:'#fff',borderRadius:8,maxWidth:800,width:'100%',maxHeight:'90vh',display:'flex',flexDirection:'column'}} onClick={e=>e.stopPropagation()}>
