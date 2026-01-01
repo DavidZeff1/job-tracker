@@ -331,8 +331,8 @@ JOB DESCRIPTION:
           }}
         >
           {state
-            ? "⚙️ View/Edit State Document"
-            : "⚙️ Add State Document (Required First)"}
+            ? "View/Edit State Document"
+            : "Add State Document (Required First)"}
         </button>
         <div
           style={{
