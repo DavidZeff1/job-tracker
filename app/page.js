@@ -571,21 +571,24 @@ JOB DESCRIPTION:
           gap: 12,
         }}
       >
-        className="btn-yellow" href="https://buymeacoffee.com/DavidZeff"
-        target="_blank" rel="noopener noreferrer" style=
-        {{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "10px 20px",
-          background: "#FFDD00",
-          color: "#000",
-          borderRadius: 8,
-          textDecoration: "none",
-          fontWeight: 600,
-          fontSize: 14,
-        }}
-        <a>
+        <a
+          className="btn-yellow"
+          href="https://buymeacoffee.com/DavidZeff"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "10px 20px",
+            background: "#FFDD00",
+            color: "#000",
+            borderRadius: 8,
+            textDecoration: "none",
+            fontWeight: 600,
+            fontSize: 14,
+          }}
+        >
           <img
             src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
             alt="Coffee"
@@ -593,10 +596,14 @@ JOB DESCRIPTION:
           />
           Buy me a coffee
         </a>
-        href="https://www.david-zeff-portfolio.com/" target="_blank"
-        rel="noopener noreferrer" style=
-        {{ color: "#6b7280", textDecoration: "none", fontSize: 14 }}
-        <a>© David Zeff</a>
+        <a
+          href="https://www.david-zeff-portfolio.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#6b7280", textDecoration: "none", fontSize: 14 }}
+        >
+          © David Zeff
+        </a>
       </footer>
       {showPrompt && (
         <div
