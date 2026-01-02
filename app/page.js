@@ -147,6 +147,7 @@ JOB DESCRIPTION:
       });
     }
   };
+  const [showStateInfo, setShowStateInfo] = useState(false);
   const del = (id) => setJobs(jobs.filter((j) => j.id !== id));
   const statusColor = {
     Applied: "#3b82f6",
@@ -366,10 +367,26 @@ JOB DESCRIPTION:
         >
           <strong>Steps:</strong>
           <ol style={{ margin: "8px 0 0", paddingLeft: 20, lineHeight: 1.8 }}>
-            <li>Add your state document above (all your info)</li>
-            <li>Click "Copy Prompt + State" for Resume or Cover Letter</li>
             <li>
-              Paste into AI and replace{" "}
+              <strong>Add your state document</strong> — one master doc with ALL
+              your info (every job, project, skill, education).{" "}
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowStateInfo(true);
+                }}
+                style={{ color: "#0ea5e9" }}
+              >
+                What's a state document?
+              </a>
+            </li>
+            <li>
+              Click <strong>"Copy Prompt + State"</strong> for Resume or Cover
+              Letter
+            </li>
+            <li>
+              Paste into AI (ChatGPT, Claude, etc) and replace{" "}
               <code
                 style={{
                   background: "#e0f2fe",
@@ -378,9 +395,10 @@ JOB DESCRIPTION:
                 }}
               >
                 [PASTE THE JOB DESCRIPTION HERE]
-              </code>
+              </code>{" "}
+              with the actual job posting
             </li>
-            <li>Get your tailored content and track below</li>
+            <li>Get your tailored content and track the application below</li>
           </ol>
         </div>
       </div>
@@ -559,6 +577,138 @@ JOB DESCRIPTION:
           ))}
         </tbody>
       </table>
+      {showStateInfo && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 20,
+            zIndex: 50,
+          }}
+          onClick={() => setShowStateInfo(false)}
+        >
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: 8,
+              maxWidth: 700,
+              width: "100%",
+              maxHeight: "90vh",
+              overflow: "auto",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ padding: 20, borderBottom: "1px solid #e5e7eb" }}>
+              <h2 style={{ margin: 0 }}>What's a State Document?</h2>
+            </div>
+            <div
+              style={{
+                padding: 20,
+                fontSize: 14,
+                lineHeight: 1.8,
+                color: "#374151",
+              }}
+            >
+              <p style={{ marginTop: 0 }}>
+                Instead of maintaining 10 different resumes, you maintain{" "}
+                <strong>ONE master document</strong> with everything about you.
+                The AI then picks what's relevant for each job.
+              </p>
+              <p>
+                <strong>Your state doc should include:</strong>
+              </p>
+              <ul style={{ paddingLeft: 20 }}>
+                <li>
+                  <strong>Contact info</strong> — name, email, phone, LinkedIn,
+                  GitHub, portfolio
+                </li>
+                <li>
+                  <strong>All work experience</strong> — not just recent, go
+                  back as far as relevant
+                </li>
+                <li>
+                  <strong>Every project</strong> — personal, school, hackathons,
+                  with tech stack and impact
+                </li>
+                <li>
+                  <strong>All skills</strong> — languages, frameworks, tools,
+                  soft skills
+                </li>
+                <li>
+                  <strong>Education</strong> — degrees, coursework, GPA if good,
+                  relevant clubs
+                </li>
+                <li>
+                  <strong>Certifications, awards, publications</strong> —
+                  anything notable
+                </li>
+                <li>
+                  <strong>Quantified achievements</strong> — numbers,
+                  percentages, scale
+                </li>
+              </ul>
+              <p>
+                <strong>Example snippet:</strong>
+              </p>
+              <pre
+                style={{
+                  background: "#f3f4f6",
+                  padding: 12,
+                  borderRadius: 4,
+                  fontSize: 12,
+                  overflow: "auto",
+                  whiteSpace: "pre-wrap",
+                }}
+              >{`WORK EXPERIENCE
+
+Software Engineer Intern | Google | Summer 2024
+- Built real-time notification system serving 2M+ users using Go and Pub/Sub
+- Reduced API latency by 40% by implementing Redis caching layer
+- Technologies: Go, GCP, Redis, Kubernetes
+
+PROJECTS
+
+ChatApp | Personal Project | 2024
+- Real-time messaging app with WebSocket connections supporting 500 concurrent users
+- Implemented end-to-end encryption using AES-256
+- Technologies: React, Node.js, Socket.io, PostgreSQL`}</pre>
+              <p style={{ marginBottom: 0 }}>
+                <strong>Key:</strong> Include everything, even stuff you
+                wouldn't normally put on a resume. The AI will pick what matters
+                for each specific job.
+              </p>
+            </div>
+            <div
+              style={{
+                padding: 15,
+                borderTop: "1px solid #e5e7eb",
+                textAlign: "right",
+              }}
+            >
+              <button
+                onClick={() => setShowStateInfo(false)}
+                style={{
+                  padding: "10px 20px",
+                  background: "#3b82f6",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 4,
+                  cursor: "pointer",
+                }}
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <footer
         style={{
           marginTop: 40,
